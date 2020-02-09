@@ -20,7 +20,8 @@ export default new Vuex.Store({
       state.cities = payload;
     },
     SET_PINNED_RESULT(state, payload) {
-      state.pinnedResults = state.pinnedResults.push(payload);
+      console.log(payload);
+      state.pinnedResults.push(payload);
     },
     SET_SEARCHED_CITY(state, payload) {
       state.searchedCity = payload;
@@ -37,9 +38,10 @@ export default new Vuex.Store({
       commit('SET_SEARCHED_CITY', value);
     },
     pinCity(context, value) {
-      axios.get(`https://api.openaq.org/v1/measurements?country=GB&city=${value.name}`)
+      axios.get(`https://api.openaq.org/v1/latest?country=GB&city=${value.name}&order_by=date&sort=desc`)
         .then((response) => {
-          context.commit('SET_PINNED_RESULT', response.data.results)
+          const mostRecent = response.data.results[0];
+          context.commit('SET_PINNED_RESULT', mostRecent)
         });
     }
   },
