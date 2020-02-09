@@ -27,7 +27,7 @@ export default new Vuex.Store({
     },
     REMOVE_PINNED_RESULT(state, payload) {
       const index = state.pinnedResults.indexOf(payload);
-      state.pinnedResults.pop(index);
+      state.pinnedResults.splice(index, 1);
     }
   },
   actions: {
