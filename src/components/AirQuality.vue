@@ -5,9 +5,9 @@
         <h1>Compare your Air</h1>
         <p>Compare the air quality between cities in the UK.</p>
         <p>Select cities to compare using the search tool below.</p>
-        <Search />
-        <Results />
       </div>
+      <Search />
+      <Results />
     </div>
   </div>
 </template>
@@ -35,10 +35,9 @@ export default {
     width: 960px;
     margin: 0 auto;
     height: 100%;
+  }
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .content {
     text-align: center;
   }
 
