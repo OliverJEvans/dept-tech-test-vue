@@ -2,7 +2,7 @@
   <ul class="results">
     <li class="results__item" v-for="(result, index) in pinnedResults" v-bind:key="index">
       <div class="item">
-        <p>Updated 6 weeks ago</p>
+        <p class="timestamp">updated {{ earliestDate(result.measurements) | moment("from", "now") }}</p>
         <h2>{{ result.location }}</h2>
         <p>in {{ result.city }}, United Kingdom</p>
         <p><strong>
@@ -27,11 +27,18 @@ export default {
   computed: {
     ...mapState({
       pinnedResults: state => state.pinnedResults
-    })
+    }),
   },
   filters: {
     upperCase: function (value) {
       return value.toUpperCase();
+    }
+  },
+  methods: {
+    earliestDate(measurements) {
+      const earliestMeasurement = measurements.reduce((r, o) => o.lastUpdated < r.lastUpdated ? o : r);
+      const earliestDate = earliestMeasurement.lastUpdated;
+      return earliestDate;
     }
   }
 }
@@ -95,5 +102,9 @@ export default {
     &__item {
       display: inline;
     }
+  }
+
+  .timestamp {
+    text-transform: uppercase;
   }
 </style>

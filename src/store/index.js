@@ -20,7 +20,6 @@ export default new Vuex.Store({
       state.cities = payload;
     },
     SET_PINNED_RESULT(state, payload) {
-      console.log(payload);
       state.pinnedResults.push(payload);
     },
     SET_SEARCHED_CITY(state, payload) {
