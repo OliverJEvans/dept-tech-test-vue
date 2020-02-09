@@ -1,20 +1,20 @@
 <template>
-  <div>
-    <div class="search__wrapper" v-bind:class="{ 'search__wrapper--open': searchedCity !== '' }">
-      <div class="input__wrapper">
-        <input
-          type="search"
-          class="input"
-          placeholder="Enter city name..."
-          v-on:input="filterCities($event)"
-        />
-      </div>
-      <ul class="search__results" v-if="searchedCity !== ''">
-        <li v-for="(city, index) in filteredCities" v-bind:key="index">
-          <button v-on:click="pinCity(city)">{{ city.name }}</button>
-        </li>
-      </ul>
+  <div class="search__wrapper" v-bind:class="{ 'search__wrapper--open': searchedCity !== '' }">
+    <div class="input__wrapper">
+      <input
+        type="search"
+        class="input"
+        placeholder="Enter city name..."
+        v-on:input="filterCities($event)"
+        v-on:keyup.enter="filterCities($event)"
+        v-bind:value="searchedCity"
+      />
     </div>
+    <ul class="search__results" v-if="searchedCity !== ''">
+      <li v-for="(city, index) in filteredCities" v-bind:key="index">
+        <button v-on:click="pinCity(city)">{{ city.name }}</button>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -41,6 +41,11 @@ export default {
 <style lang="scss" scoped>
   .input__wrapper {
     background: #ffffff;
+    background-image: url('../../assets/search.svg');
+    background-size: 25px 25px;
+    background-position: 5px center;
+    background-repeat: no-repeat;
+    padding-left: 35px;
     border: 2px solid #bebebe;
     border-radius: 8px;
     overflow: hidden;
@@ -59,6 +64,7 @@ export default {
     margin: 0 auto;
     border: 1px solid #b7acd8;
     border-radius: 10px;
+    position: relative;
 
     &--open {
       background: white;

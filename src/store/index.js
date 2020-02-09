@@ -9,6 +9,7 @@ export default new Vuex.Store({
     cities: [],
     pinnedResults: [],
     searchedCity: '',
+    loadingPinnedResults: false,
   },
   getters: {
     filteredCities(state) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
   mutations: {
     SET_CITIES(state, payload) {
       state.cities = payload;
+    },
+    SET_PINNED_RESULT_LOADING(state, payload) {
+      state.loadingPinnedResults = payload;
     },
     SET_PINNED_RESULT(state, payload) {
       state.pinnedResults.push(payload);
@@ -41,10 +45,13 @@ export default new Vuex.Store({
       commit('SET_SEARCHED_CITY', value);
     },
     pinCity({ commit }, value) {
+      commit('SET_PINNED_RESULT_LOADING', true);
+      commit('SET_SEARCHED_CITY', '');
       axios.get(`https://api.openaq.org/v1/latest?country=GB&city=${value.name}&order_by=date&sort=desc`)
         .then((response) => {
           const mostRecent = response.data.results[0];
-          commit('SET_PINNED_RESULT', mostRecent)
+          commit('SET_PINNED_RESULT', mostRecent);
+          commit('SET_PINNED_RESULT_LOADING', false);
         });
     },
     unPinResult({ commit }, value) {

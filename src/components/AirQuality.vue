@@ -36,15 +36,18 @@ export default {
 
 <style lang="scss" scoped>
   .wrapper {
-    height: 100%;
-    width: 100%;
+    min-height: 100%;
+    min-width: 100%;
     background: linear-gradient(236deg, rgba(68,117,174,1) 0%, rgba(119,56,175,1) 100%);
   }
 
   .container {
-    width: 960px;
+    padding: 80px 10px;
+    max-width: 960px;
+    width: 100%;
     margin: 0 auto;
     height: 100%;
+    box-sizing: border-box;
   }
 
   .content {

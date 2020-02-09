@@ -17,6 +17,14 @@
         <button class="closeBtn" v-on:click="unPinResult(result)"><span>Close</span></button>
       </div>
     </li>
+    <li class="results__item results__item--loading" v-if="loadingPinnedResults">
+      <div class="item">
+        <p class="timestamp"></p>
+        <h2 class="heading"></h2>
+        <p class="location"></p>
+        <p class="measurements"><strong></strong></p>
+      </div>
+    </li>
   </ul>
 </template>
 
@@ -26,7 +34,8 @@ import { mapState, mapActions } from 'vuex';
 export default {
   computed: {
     ...mapState({
-      pinnedResults: state => state.pinnedResults
+      pinnedResults: state => state.pinnedResults,
+      loadingPinnedResults: state => state.loadingPinnedResults
     }),
   },
   filters: {
@@ -47,15 +56,22 @@ export default {
 
 <style lang="scss" scoped>
   .results {
-    margin: 0;
+    margin: 80px 0 0;
     padding: 0;
     list-style: none;
-    display: flex;
-    flex-wrap: wrap;
+
+    @media (min-width: 540px) {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
 
     &__item {
-      flex: 1 0 50%;
       color: #171e42;
+
+      @media (min-width: 540px) {
+        flex: 0 0 50%;
+      }
     }
   }
 
@@ -75,8 +91,8 @@ export default {
     position: absolute;
     top: 15px;
     right: 15px;
-    height: 25px;
-    width: 25px;
+    height: 20px;
+    width: 20px;
     background-image: url('../../assets/close.svg');
     border: none;
     cursor: pointer;
@@ -107,5 +123,34 @@ export default {
 
   .timestamp {
     text-transform: uppercase;
+  }
+
+  .results__item--loading {
+    .timestamp, .heading, .location, .measurements {
+      display: block;
+      background: #f3f3f3;
+    }
+
+    .timestamp {
+      height: 20px;
+      width: 200px;
+    }
+
+    h2 {
+      height: 30px;
+      width: 300px;
+    }
+
+    .location {
+      height: 20px;
+      width: 250px;
+    }
+
+    .measurements {
+      height: 20px;
+      width: 200px;
+      margin-bottom: 6px;
+    }
+
   }
 </style>
