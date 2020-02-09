@@ -15,11 +15,21 @@
 <script>
 import Search from '../components/AirQuality/AirQualitySearch';
 import Results from '../components/AirQuality/AirQualityResults';
+import { mapActions } from 'vuex'
+
 
 export default {
   components: {
     Search,
     Results
+  },
+  created: function() {
+    this.getCities();
+  },
+  methods: {
+    ...mapActions([
+      'getCities'
+    ])
   }
 }
 </script>
