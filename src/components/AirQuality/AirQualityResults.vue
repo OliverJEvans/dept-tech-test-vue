@@ -4,7 +4,7 @@
       <div class="item">
         <p class="timestamp">updated {{ earliestDate(result.measurements) | moment("from", "now") }}</p>
         <h2>{{ result.location }}</h2>
-        <p>in {{ result.city }}, United Kingdom</p>
+        <p>in {{ result.city }}, {{ result.country }}</p>
         <p><strong>
           Values:
           <ul class="measurements">
@@ -60,7 +60,7 @@ export default {
     padding: 0;
     list-style: none;
 
-    @media (min-width: 540px) {
+    @media (min-width: 670px) {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -69,7 +69,7 @@ export default {
     &__item {
       color: #171e42;
 
-      @media (min-width: 540px) {
+      @media (min-width: 670px) {
         flex: 0 0 50%;
       }
     }
@@ -80,7 +80,11 @@ export default {
     border-radius: 10px;
     padding: 15px 30px;
     position: relative;
-    margin: 10px
+    margin: 20px 0px;
+
+    @media (min-width: 670px) {
+      margin: 20px 10px;
+    }
   }
 
   h2 {

@@ -42,8 +42,8 @@ export default {
   .input__wrapper {
     background: #ffffff;
     background-image: url('../../assets/search.svg');
-    background-size: 25px 25px;
-    background-position: 5px center;
+    background-size: 20px 20px;
+    background-position: 10px center;
     background-repeat: no-repeat;
     padding-left: 35px;
     border: 2px solid #bebebe;
@@ -76,7 +76,7 @@ export default {
     margin: 0;
     padding: 0;
     list-style: none;
-    max-height: 185px;
+    max-height: 200px;
     overflow: auto;
 
     li {
@@ -92,7 +92,7 @@ export default {
       display: block;
       background: none;
       border: none;
-      padding: 10px;
+      padding: 10px 25px;
       width: 100%;
       text-align: left;
     }
