@@ -39,6 +39,7 @@ export default {
 
   .content {
     text-align: center;
+    color: #ffffff;
   }
 
   h1 {
