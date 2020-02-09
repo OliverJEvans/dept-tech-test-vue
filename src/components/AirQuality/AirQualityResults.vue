@@ -14,14 +14,14 @@
             </li>
           </ul>
         </strong></p>
-        <button><span>Close</span></button>
+        <button class="closeBtn" v-on:click="unPinResult(result)"><span>Close</span></button>
       </div>
     </li>
   </ul>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   computed: {
@@ -35,6 +35,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['unPinResult']),
     earliestDate(measurements) {
       const earliestMeasurement = measurements.reduce((r, o) => o.lastUpdated < r.lastUpdated ? o : r);
       const earliestDate = earliestMeasurement.lastUpdated;
@@ -70,13 +71,13 @@ export default {
     color: #7738af;
   }
 
-  button {
+  .closeBtn {
     position: absolute;
     top: 15px;
     right: 15px;
     height: 25px;
     width: 25px;
-    background: red;
+    background-image: url('../../assets/close.svg');
     border: none;
     cursor: pointer;
 
