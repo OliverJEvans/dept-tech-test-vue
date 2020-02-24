@@ -1,14 +1,18 @@
 <template>
   <div class="search__wrapper" v-bind:class="{ 'search__wrapper--open': searchedCity !== '' }">
     <div class="input__wrapper">
-      <input
-        type="search"
-        class="input"
-        placeholder="Enter city name..."
-        v-on:input="filterCities($event)"
-        v-on:keyup.enter="filterCities($event)"
-        v-bind:value="searchedCity"
-      />
+      <label for="city-search">
+        <span class="visually-hidden">City name:</span>
+        <input
+          id="city-search"
+          type="search"
+          class="input"
+          placeholder="Enter city name..."
+          v-on:input="filterCities($event)"
+          v-on:keyup.enter="filterCities($event)"
+          v-bind:value="searchedCity"
+        />
+      </label>
     </div>
     <ul class="search__results" v-if="searchedCity !== ''">
       <li v-for="(city, index) in filteredCities" v-bind:key="index">
@@ -96,5 +100,16 @@ export default {
       width: 100%;
       text-align: left;
     }
+  }
+
+  .visually-hidden {
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    padding:0 !important;
+    border:0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
   }
 </style>
