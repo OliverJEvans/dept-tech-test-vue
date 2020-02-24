@@ -92,12 +92,15 @@ export default {
   }
 
   .closeBtn {
+    -webkit-appearance: none;
+    -moz-appearance: none;
     position: absolute;
     top: 15px;
     right: 15px;
     height: 20px;
     width: 20px;
     background-image: url('../../assets/close.svg');
+    background-color: transparent;
     border: none;
     cursor: pointer;
 
